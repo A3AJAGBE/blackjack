@@ -3,6 +3,7 @@ This is a basic blackjack game application
 """
 
 # Imports
+import os
 import random
 from logo import cards
 
@@ -25,6 +26,11 @@ def score(player_cards):
         player_cards.remove(11)
         player_cards.append(1)
     return sum(player_cards)
+
+
+# Clear console
+def clear():
+    return os.system('clear')
 
 
 # Game function
@@ -69,7 +75,7 @@ while game_start:
 
     # Validate response
     if user_start == "Yes":
-        print('Let\'s Go\n')
+        clear()
         game()
     elif user_start == "No":
         print('When ever you are ready, start the game.')
