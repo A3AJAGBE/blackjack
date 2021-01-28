@@ -62,6 +62,15 @@ def game():
                 print('Invalid Response.')
                 game_over = True
 
+    # Make sure the dealer has over 16
+    while dealer_score != 21 and dealer_score < 17:
+        dealer_cards.append(deal())
+        dealer_score = score(dealer_cards)
+
+    print(
+        f"\nYour final hand is: {user_cards} and final score is: {user_score}.\n"
+        f"The dealer's final hand is: {dealer_cards} and final score is: {dealer_score}.\n")
+
     # Validating score
     if user_score == dealer_score:
         print("It's a draw. Yikes")
