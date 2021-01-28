@@ -24,8 +24,7 @@ def score(player_cards):
     if 11 in player_cards and sum(player_cards) > 21:
         player_cards.remove(11)
         player_cards.append(1)
-    else:
-        return sum(player_cards)
+    return sum(player_cards)
 
 
 # User prompts
@@ -52,6 +51,19 @@ if user_start == "Yes":
         dealer_score = score(dealer_cards)
         print(f'Your cards are: {user_cards} and the current score is {user_score}')
         print(f'The dealer\'s first card is: {dealer_cards[0]}')
+
+        # Verify blackjack rules
+        if user_score == 21 or dealer_score == 21 or user_score > 21:
+            game_over = True
+        else:
+            another_user_deal = input("Type 'Yes' to get another card, type 'No' to pass\n").title()
+
+            if another_user_deal == "Yes":
+                user_cards.append(deal())
+            elif another_user_deal == "No":
+                game_over = True
+            else:
+                print('Invalid Response.')
 
 elif user_start == "No":
     print('When ever you are ready, start the game.')
