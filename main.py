@@ -40,9 +40,6 @@ def game():
         user_cards.append(deal())
         dealer_cards.append(deal())
 
-    # testing
-    print(f'Dealer\'s card: {dealer_cards}')
-
     game_over = False
     while not game_over:
         # Outputs
