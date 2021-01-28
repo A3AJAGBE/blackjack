@@ -27,13 +27,8 @@ def score(player_cards):
     return sum(player_cards)
 
 
-# User prompts
-user_start = input('Ready to play a game of blackjack? Type "Yes" or "No"\n').title()
-
-# Validate response
-if user_start == "Yes":
-    print('Let\'s Go\n')
-
+# Game function
+def game():
     user_cards = []
     dealer_cards = []
 
@@ -65,7 +60,20 @@ if user_start == "Yes":
             else:
                 print('Invalid Response.')
 
-elif user_start == "No":
-    print('When ever you are ready, start the game.')
-else:
-    print('Invalid Response.')
+
+# The game application
+game_start = True
+while game_start:
+    # User prompts
+    user_start = input('Ready to play a game of blackjack? Type "Yes" or "No"\n').title()
+
+    # Validate response
+    if user_start == "Yes":
+        print('Let\'s Go\n')
+        game()
+    elif user_start == "No":
+        print('When ever you are ready, start the game.')
+        game_start = False
+    else:
+        print('Invalid Response.')
+        game_start = False
