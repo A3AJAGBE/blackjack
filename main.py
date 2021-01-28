@@ -7,11 +7,6 @@ import os
 import random
 from logo import cards
 
-# Default displays
-print('HOUSE RULES:\nUnlimited deck size.\nThere are no Jokers.\nThe Jack,Queen and King counts as 10\n'
-      'Ace can count as either 1 or 11\nCards are not removed from the deck as they are drawn\n'
-      'The computer is the dealer\n')
-
 
 # Dealing cards
 def deal():
@@ -57,7 +52,7 @@ def game():
         if user_score == 21 or dealer_score == 21 or user_score > 21:
             game_over = True
         else:
-            another_user_deal = input("Type 'Yes' to get another card, type 'No' to pass\n").title()
+            another_user_deal = input("\nType 'Yes' to get another card, type 'No' to pass\n").title()
 
             if another_user_deal == "Yes":
                 user_cards.append(deal())
@@ -65,21 +60,48 @@ def game():
                 game_over = True
             else:
                 print('Invalid Response.')
+                game_over = True
+
+    # Validating score
+    if user_score == dealer_score:
+        print("It's a draw. Yikes")
+    elif dealer_score == 21:
+        print("Dealer has a Blackjack, You lose.")
+    elif user_score == 21:
+        print("You have a Blackjack, You win.")
+    elif user_score > 21:
+        print("Dealer wins because you went over 21.")
+    elif dealer_score > 21:
+        print("You win because dealer went over 21.")
+    elif user_score > dealer_score:
+        print("You Win")
+    else:
+        print("Dealer Win.")
 
 
 # The game application
 game_start = True
 while game_start:
+    # Default displays
+    print('\nHOUSE RULES:\nUnlimited deck size.\nThere are no Jokers.\nThe Jack,Queen and King counts as 10.\n'
+          'Ace can count as either 1 or 11 depending on cards already drawn.\n'
+          'Cards are not removed from the deck as they are drawn.\n'
+          'The computer is the dealer.\n'
+          'A Blackjack means exactly 21 points.\n'
+          'If player or dealer has over 21 they automatically lose.')
+
     # User prompts
-    user_start = input('Ready to play a game of blackjack? Type "Yes" or "No"\n').title()
+    user_start = input('\nReady to play a game of blackjack? Type "Yes" or "No"\n').title()
 
     # Validate response
     if user_start == "Yes":
         clear()
         game()
     elif user_start == "No":
-        print('When ever you are ready, start the game.')
+        clear()
+        print('When ever you are ready.')
         game_start = False
     else:
-        print('Invalid Response.')
-        game_start = False
+        clear()
+        print('Invalid Response. Restarting the game...')
+        game_start = True
