@@ -5,7 +5,7 @@ This is a basic blackjack game application
 # Imports
 import os
 import random
-from logo import cards
+from logo import cards, logo
 
 
 # Dealing cards
@@ -30,6 +30,9 @@ def clear():
 
 # Game function
 def game():
+    # Show logo
+    print(logo)
+
     user_cards = []
     dealer_cards = []
 
